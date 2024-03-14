@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Donate";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+}
+
+<style>
+    .donate-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+        .donate-form form {
+            width: 50%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .donate-form form label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+
+            .donate-form form input[type="text"],
+            .donate-form form input[type="number"],
+            .donate-form form select,
+            .donate-form form textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            .donate-form form button {
+                display: block;
+                width: 100%;
+                padding: 10px;
+                background-color: #4caf50;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+                .donate-form form button:hover {
+                    background-color: #45a049;
+                }
+</style>
+
+
+
+<div class="donate-form">
+    <form action="#" method="post">
+        <div class="form-group">
+            <label for="campaign">Select Campaign:</label>
+            <select id="campaign" name="campaign">
+                <option value="campaign1">Campaign 1</option>
+                <option value="campaign2">Campaign 2</option>
+                <!-- Add options dynamically based on data from the database -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" min="0" placeholder="Enter amount">
+        </div>
+        <div class="form-group">
+            <label for="payment-method">Payment Method:</label>
+            <select id="payment-method" name="payment-method">
+                <option value="credit-card">Credit Card</option>
+                <option value="paypal">PayPal</option>
+                <!-- Add more payment methods here if needed -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="note">Note:</label>
+            <textarea id="note" name="note" rows="4" placeholder="Enter note"></textarea>
+        </div>
+        <button type="submit">Donate Now</button>
+    </form>
+</div>
