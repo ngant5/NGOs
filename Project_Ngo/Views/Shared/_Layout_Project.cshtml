@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -48,10 +49,29 @@
                                 </div>
 
                                 <div class="login">
-                                    <a href="@Url.Action("Login", "User")"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                    @if (Session["Username"] == null)
+                                    {
+                                        <a href="@Url.Action("Login", "User")"><i class="fa fa-user" aria-hidden="true"></i> <span>Login</span></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Welcome", "User")"><i class="fa fa-user" aria-hidden="true"></i> <span>Welcome, @Session["Username"]</span></a>
+                                    }
                                 </div>
 
-                               
+                                <div class="login register">
+                                    @if (Session["Username"] == null)
+                                    {
+                                        <a href="@Url.Action("Register", "User")"><i class="fa fa-user" aria-hidden="true"></i> <span>Register</span></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="@Url.Action("Account", "User", new { UserID = Session["UserID"] } )"><i class="fa fa-user" aria-hidden="true"></i> <span>Account</span></a>
+                                        <a href="@Url.Action("Logout", "User")"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Logout</span></a>
+                                    }
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -134,78 +154,79 @@
 
             <div class="single-hero-post bg-overlay">
 
-                <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/2.jpg');" /> ></div>
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/2.jpg');" /> >
+            </div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="hero-slides-content text-center">
+                            <h2>Plants exist in the weather and light rays that surround them</h2>
 
-                                <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
-                                    <a href="#" class="btn alazea-btn active">CONTACT US</a>
-                                </div>
+                            <div class="welcome-btn-group">
+                                <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                <a href="#" class="btn alazea-btn active">CONTACT US</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-hero-post bg-overlay">
+        </div>
+        <div class="single-hero-post bg-overlay">
 
-                <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/4a.jpg');"></div>
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
+            <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/4a.jpg');"></div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
 
-                            <div class="hero-slides-content text-center">
-                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                        <div class="hero-slides-content text-center">
+                            <h2>Plants exist in the weather and light rays that surround them</h2>
 
-                                <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
-                                    <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
-                                </div>
+                            <div class="welcome-btn-group">
+                                <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="single-hero-post bg-overlay">
-                <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/1a.jpg');"></div>
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
+        <div class="single-hero-post bg-overlay">
+            <div class="slide-img bg-img" style="background-image: url('~/Content/asset/img/bg-img/1a.jpg');"></div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
 
-                            <div class="hero-slides-content text-center">
-                                <h2>Plants exist in the weather and light rays that surround them</h2>
+                        <div class="hero-slides-content text-center">
+                            <h2>Plants exist in the weather and light rays that surround them</h2>
 
-                                <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
-                                    <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
-                                </div>
+                            <div class="welcome-btn-group">
+                                <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="single-hero-post bg-overlay">
-                <div class="slide-img bg-img" {style="background-image: url('~/Content/asset/img/bg-img/4b.jpg'); }"></div>
-                <div class="container h-100">
-                    <div class="row h-100 align-items-center">
-                        <div class="col-12">
-                            <div class="hero-slides-content text-center">
-                                <h2>Plants exist in the weather and light rays that surround them</h2>
+        </div>
+        <div class="single-hero-post bg-overlay">
+            <div class="slide-img bg-img" {style="background-image: url('~/Content/asset/img/bg-img/4b.jpg'); }"></div>
+            <div class="container h-100">
+                <div class="row h-100 align-items-center">
+                    <div class="col-12">
+                        <div class="hero-slides-content text-center">
+                            <h2>Plants exist in the weather and light rays that surround them</h2>
 
-                                <div class="welcome-btn-group">
-                                    <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
-                                    <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
-                                </div>
+                            <div class="welcome-btn-group">
+                                <a href="#" class="btn alazea-btn mr-30">GET STARTED</a>
+                                <a href="about.html" class="btn alazea-btn active">CONTACT US</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       
+        </div>
+
     </section>
     @RenderBody()
     <footer class="footer-area bg-img" style="background-image: url(~/Content/asset/img/bg-img/3.jpg);">
@@ -246,9 +267,9 @@
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">
                         <div class="single-footer-widget">
-                            
-                            
-                            
+
+
+
                         </div>
                     </div>
                     <div class="col-12 col-sm-6 col-lg-3">

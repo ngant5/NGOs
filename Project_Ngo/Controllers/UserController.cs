@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Project_Ngo.Models.Entities;
+using Project_Ngo.Views.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -41,30 +43,154 @@ namespace Project_Ngo.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult NewAccount(Users model, HttpPostedFileBase image)
+
+        {
+            UserDAO.Instance.NewUser(model, image);
+            return RedirectToAction("index");
+
+        }
+
         public ActionResult ForgotPassword()
         {
             return View();
         }
+
+        //public ActionResult SendResetLink()
+        //{
+        //    return View();
+        //}
+
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult LoginUser(string Fullname, string Password)
         {
-            // Logic xác thực tên đăng nhập và mật khẩu ở đây
-            if (username == "admin" && password == "adminpassword")
+            try
             {
-                // Đăng nhập thành công, chuyển hướng đến trang chính
-                return RedirectToAction("Index", "Home");
+                if (string.IsNullOrEmpty(Fullname) || string.IsNullOrEmpty(Password))
+                {
+                    ViewBag.Error = "Username and password are required fields.";
+                    return View("Login");
+                }
+
+                using (var context = new NGOEntities())
+                {
+                    
+                    var user = context.Users.FirstOrDefault(u => u.FullName == Fullname);
+
+                    if (user != null && user.Password == Password)
+                    {
+                        
+                        Session.Timeout = 30;
+                        Session["Username"] = user.FullName;
+                        Session["UserID"] = user.UserID;
+                        return RedirectToAction("Welcome");
+                    }
+                    else
+                    {
+                        
+                        ViewBag.Error = "Invalid username or password.";
+                        return View("Login");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                ViewBag.Error = "An error occurred while processing your request. Please try again later.";
+                
+                Console.WriteLine(ex.Message);
+                
+                return View("Error");
+            }
+        }
+        public ActionResult Welcome()
+        {
+            
+            if (Session["Username"] != null)
+            {
+                string username = Session["Username"].ToString();
+                int userID = Session["UserID"] != null ? (int)Session["UserID"] : 0;
+
+                ViewBag.Username = username;
+                ViewBag.UserID = userID;
+
+                return View();
             }
             else
             {
-                // Đăng nhập không thành công, hiển thị thông báo lỗi
-                ViewBag.Error = "Invalid username or password";
-                return View();
+                
+                return RedirectToAction("Login");
             }
+        }
+
+        [HttpGet]
+        public ActionResult Account(int? UserID)
+        {
+            if (Session["Username"] != null)
+            {
+                if (UserID != null)
+                {
+                    
+                    var user = UserDAO.Instance.GetById(UserID.Value);
+
+                    if (user != null)
+                    {
+                        
+                        return View(user);
+                    }
+                    else
+                    {
+                        
+                        return HttpNotFound();
+                    }
+                }
+                else
+                {
+                    
+                    return HttpNotFound();
+                }
+            }
+            else
+            {
+                
+                return RedirectToAction("Login");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateAccount(int? UserID, Users model, HttpPostedFileBase image)
+        {
+            if (ModelState.IsValid)
+            {
+                model.UserID = UserID.Value;
+                var result = UserDAO.Instance.Update(model, image);
+                if (result == 1)
+                {
+                    return View("UpdateSuccessPopup");
+
+                }
+                else if (result == 2)
+                {
+                    return HttpNotFound();
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to update user info.");
+                }
+            }
+            return View(model);
+        }
+        public ActionResult Logout()
+        {
+
+            Session.Clear();
+            return RedirectToAction("Login", "User");
         }
     }
 }

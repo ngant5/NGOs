@@ -1,10 +1,11 @@
-﻿@{
-    ViewBag.Title = "Register";
+﻿
+@{
+    ViewBag.Title = "Account";
     Layout = "~/Views/Shared/_Layout_Project.cshtml";
 }
 
 <style>
-    .register-form {
+    .info-form {
         max-width: 400px;
         margin: 0 auto;
         padding: 20px;
@@ -49,31 +50,37 @@
         }
 </style>
 
-<div class="register-form">
-    <h2>Register</h2>
-    <form action="@Url.Action("NewAccount", "User")" method="post" enctype="multipart/form-data">
+<div class="info-form">
+    <h2>Account Info</h2>
+    <form action="@Url.Action("UpdateAccount", "User")" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="fullname">Full Name:</label>
-            <input type="text" id="fullname" name="FullName" class="form-control" required>
+            <input type="text" id="fullname" name="FullName" class="form-control" value="@Model.FullName" required>
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="Email" class="form-control" required>
+            <input type="email" id="email" name="Email" class="form-control" value="@Model.Email" required>
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="Password" class="form-control" required>
+            <input type="password" id="password" name="Password" class="form-control" value="@Model.Password" required>
         </div>
         <div class="form-group">
             <label for="phone">Phone:</label>
-            <input type="text" id="phone" name="Phone" class="form-control">
+            <input type="text" id="phone" name="Phone" class="form-control" value="@Model.Phone">
         </div>
         <div class="form-group">
             <label for="image">Image</label>
-            <input type="file" id="image" name="image" class="form-control">
+            <input type="file" id="image" name="image" class="form-control" value="@Model.image">
         </div>
-
-        <button type="submit" class="btn btn-primary">Register</button>
-        
+        @if (Session["UserID"] != null)
+        {
+            <input type="hidden" name="UserID" value="@Session["UserID"]" />
+        }
+        else if (!string.IsNullOrEmpty(Request.QueryString["UserID"]))
+        {
+            <input type="hidden" name="UserID" value="@Request.QueryString["UserID"]" />
+        }
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>

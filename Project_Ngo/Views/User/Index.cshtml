@@ -4,5 +4,19 @@
     Layout = "~/Views/Shared/_Layout_Project.cshtml";
 }
 
-<h2>Index</h2>
+<body>
+    <div>
+        @if (User.Identity.IsAuthenticated)
+        {
+            <p>Welcome, @User.Identity.Name!</p>
+            <p>You are now logged in.</p>
+        }
+        else
+        {
+            <p>Welcome, Guest!</p>
+            <p>Please register or log in to access more features.</p>
+        }
+    </div>
+</body>
+
 
