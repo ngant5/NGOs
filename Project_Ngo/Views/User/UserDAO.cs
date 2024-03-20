@@ -63,14 +63,8 @@ namespace Project_Ngo.Views.User
             try
             {
                 NGOEntities en = new NGOEntities();
-                Random random = new Random();
-                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                string numberAccount = new string(Enumerable.Repeat(chars, 5)
-                  .Select(s => s[random.Next(s.Length)]).ToArray());
-
-                // Gán giá trị cho các trường cần thiết
                 model.typeUser = true;
-                model.NumberAccount = numberAccount;
+                model.NumberAccount = "";
 
 
                 if (imageFile != null && imageFile.ContentLength > 0)

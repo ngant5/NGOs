@@ -57,11 +57,6 @@ namespace Project_Ngo.Controllers
             return View();
         }
 
-        //public ActionResult SendResetLink()
-        //{
-        //    return View();
-        //}
-
         public ActionResult Login()
         {
             return View();
