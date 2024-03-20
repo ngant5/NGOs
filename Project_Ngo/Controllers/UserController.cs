@@ -47,7 +47,7 @@ namespace Project_Ngo.Controllers
         public ActionResult NewAccount(Users model, HttpPostedFileBase image)
 
         {
-            UserDAO.Instance.NewUser(model, image);
+            UserDao.Instance.NewUser(model, image);
             return RedirectToAction("index");
 
         }
@@ -73,14 +73,14 @@ namespace Project_Ngo.Controllers
                     return View("Login");
                 }
 
-                using (var context = new NGOEntities())
+                using (var context = new NGOEntities2())
                 {
-                    
+
                     var user = context.Users.FirstOrDefault(u => u.FullName == Fullname);
 
                     if (user != null && user.Password == Password)
                     {
-                        
+
                         Session.Timeout = 30;
                         Session["Username"] = user.FullName;
                         Session["UserID"] = user.UserID;
@@ -88,7 +88,7 @@ namespace Project_Ngo.Controllers
                     }
                     else
                     {
-                        
+
                         ViewBag.Error = "Invalid username or password.";
                         return View("Login");
                     }
@@ -96,17 +96,17 @@ namespace Project_Ngo.Controllers
             }
             catch (Exception ex)
             {
-                
+
                 ViewBag.Error = "An error occurred while processing your request. Please try again later.";
-                
+
                 Console.WriteLine(ex.Message);
-                
+
                 return View("Error");
             }
         }
         public ActionResult Welcome()
         {
-            
+
             if (Session["Username"] != null)
             {
                 string username = Session["Username"].ToString();
@@ -119,7 +119,7 @@ namespace Project_Ngo.Controllers
             }
             else
             {
-                
+
                 return RedirectToAction("Login");
             }
         }
@@ -131,29 +131,29 @@ namespace Project_Ngo.Controllers
             {
                 if (UserID != null)
                 {
-                    
-                    var user = UserDAO.Instance.GetById(UserID.Value);
+
+                    var user = UserDao.Instance.GetById(UserID.Value);
 
                     if (user != null)
                     {
-                        
+
                         return View(user);
                     }
                     else
                     {
-                        
+
                         return HttpNotFound();
                     }
                 }
                 else
                 {
-                    
+
                     return HttpNotFound();
                 }
             }
             else
             {
-                
+
                 return RedirectToAction("Login");
             }
         }
@@ -164,7 +164,7 @@ namespace Project_Ngo.Controllers
             if (ModelState.IsValid)
             {
                 model.UserID = UserID.Value;
-                var result = UserDAO.Instance.Update(model, image);
+                var result = UserDao.Instance.Update(model, image);
                 if (result == 1)
                 {
                     return View("UpdateSuccessPopup");
@@ -185,7 +185,7 @@ namespace Project_Ngo.Controllers
         {
 
             Session.Clear();
-            return RedirectToAction("Index","User");
+            return RedirectToAction("Index", "User");
         }
     }
 }

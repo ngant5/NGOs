@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Project.cshtml";
+    List<Project_Ngo.Models.Entities.User> nv = new List<Project_Ngo.Models.Entities.User>();
+    if (ViewBag.user != null) { nv = ViewBag.user; }
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type='text/css'>
+        #myTable {
+            counter-reset: rowNumber;
+        }
+
+            #myTable tbody tr {
+                counter-increment: rowNumber;
+            }
+
+                #myTable tbody tr td:first-of-type::before {
+                    content: counter(rowNumber);
+                }
+
+    </style>
+</head>
+<body>
+    <div>
+        <table class="table table-striped" width="700" border="1" id="myTable">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>pasword</th>
+                    <th>phone</th>
+                    <th>image</th>
+                    <th>typeuser</th>
+                    <th>NumberAccount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.User item in nv)
+                {
+                    <tr>
+                        <td>
+                         
+                        </td>
+                        <td>
+                            @item.FullName
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Password
+                        </td>
+                        <td>
+                            @item.Phone
+                        </td>
+                        <td>
+                            <img src="~/Content/asset/img/bg-img/@item.image" width="40" height="40"/>
+                        </td>
+                        <td>
+                            @item.typeUser
+                        </td>
+                        <td>
+                            @item.NumberAccount
+                        </td>
+                    </tr>                 
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+

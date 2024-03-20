@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="NGOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="NGOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Campaigns">
           <Key>
             <PropertyRef Name="CampaignsID" />
@@ -170,7 +170,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="NGOEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="NGOEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Campaigns" EntityType="Self.Campaigns" />
           <EntitySet Name="Donations" EntityType="Self.Donations" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
@@ -189,7 +189,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="NGOModelStoreContainer" CdmEntityContainer="NGOEntities">
+        <EntityContainerMapping StorageEntityContainer="NGOModelStoreContainer" CdmEntityContainer="NGOEntities2">
           <EntitySetMapping Name="Campaigns">
             <EntityTypeMapping TypeName="NGOModel.Campaigns">
               <MappingFragment StoreEntitySet="Campaigns">
@@ -257,7 +257,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

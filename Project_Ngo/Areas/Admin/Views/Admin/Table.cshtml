@@ -1,0 +1,171 @@
+﻿
+@{
+    ViewBag.Title = "Table";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    List<Project_Ngo.Models.Entities.User> nv = new List<Project_Ngo.Models.Entities.User>();
+    if (ViewBag.user != null) { nv = ViewBag.user; }
+
+    List<Project_Ngo.Models.Entities.Donation> don = new List<Project_Ngo.Models.Entities.Donation>();
+    if (ViewBag.donation != null) { don = ViewBag.donation; }
+
+    List<Project_Ngo.Models.Entities.Campaign> cam = new List<Project_Ngo.Models.Entities.Campaign>();
+    if (ViewBag.campaigns != null) { cam = ViewBag.campaigns; }
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type='text/css'>
+        #numbered-table {
+            counter-reset: rowNumber; /* Reset counter for each table */
+        }
+
+            #numbered-table tbody tr {
+                counter-increment: rowNumber; /* Increment counter for each row */
+            }
+
+                #numbered-table tbody tr td:first-child::before {
+                    content: counter(rowNumber); /* Display row number */
+                    min-width: 1em; /* Ensure space for at least one digit */
+                    margin-right: 0.5em; /* Add some spacing between number and content */
+                }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>
+            User
+        </h2>
+        <table class="table table-striped" width="700" border="1" id="numbered-table">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>pasword</th>
+                    <th>phone</th>
+                    <th>image</th>
+                    <th>typeuser</th>
+                    <th>NumberAccount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.User item in nv)
+                {
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @item.FullName
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Password
+                        </td>
+                        <td>
+                            @item.Phone
+                        </td>
+                        <td>
+                            <img src="~/Content/asset/img/bg-img/@item.image" width="40" height="40" />
+                        </td>
+                        <td>
+                            @item.typeUser
+                        </td>
+                        <td>
+                            @item.NumberAccount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <h2>
+        Donations
+    </h2>
+    <div>
+        <table class="table table-striped" width="700" border="1" id="numbered-table">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Amount</th>
+                    <th>Donation Date</th>
+                    <th>Payment method</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.Donation item in don)
+                {
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @item.Amount
+                        </td>
+                        <td>
+                            @item.DonationDate
+                        </td>
+                        <td>
+                            @item.PaymentMethod
+                        </td>
+                        <td>
+                            @item.Status
+                        </td>
+                        <td>
+                            @item.Note
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <h2>
+        Campaigns
+    </h2>
+    <div>
+        <table class="table table-striped" width="700" border="1" id="numbered-table">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Name</th>
+                    <th>Goal Amount</th>
+                    <th>Current Amount</th>
+                    <th>Start Date</th>
+                    <th>End date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.Campaign item in cam)
+                {
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @item.NameCampaign
+                        </td>
+                        <td>
+                            @item.GoalAmount
+                        </td>
+                        <td>
+                            @item.CurrentAmount
+                        </td>
+                        <td>
+                            @item.StartDate
+                        </td>
+                        <td>
+                            @item.EndDate
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
