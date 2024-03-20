@@ -185,7 +185,7 @@ namespace Project_Ngo.Controllers
         {
 
             Session.Clear();
-            return RedirectToAction("Login", "User");
+            return RedirectToAction("Index","User");
         }
     }
 }
