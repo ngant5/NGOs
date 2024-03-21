@@ -76,7 +76,7 @@ namespace Project_Ngo.Areas.Admin.Controllers
                             {
                                 ViewBag.Error = "Invalid username or password.";
 
-                                return RedirectToAction("Index", "User");
+                                return RedirectToAction("Login", "Admin");
 
 
                             }
@@ -84,13 +84,15 @@ namespace Project_Ngo.Areas.Admin.Controllers
                         else
                         {
                             ViewBag.Error = "You are not authorized to access the admin panel.";
-                            return RedirectToAction("Index", "User");
+                            return RedirectToAction("Login", "User", new { area = "User" });
+
                         }
                     }
                     else
                     {
                         ViewBag.Error = "Invalid username or password.";
-                        return View("~/Views/User/Register.cshtml");
+                        return RedirectToAction("Register", "User", new { area = "User" });
+
                     }
                 }
             }
