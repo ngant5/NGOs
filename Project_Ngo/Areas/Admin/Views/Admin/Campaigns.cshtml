@@ -6,10 +6,13 @@
     if (ViewBag.campaigns != null) { cam = ViewBag.campaigns; }
 }
 
+
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <style type='text/css'>
         #numbered-table {
             counter-reset: rowNumber; /* Reset counter for each table */
@@ -76,7 +79,7 @@
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell--span-12">
                                 <div class="mdc-card">
-                                    <h6 class="card-title">Add Product</h6>
+                                    <h6 class="card-title">Add Campaign</h6>
                                     <div class="template-demo">
                                         <div class="mdc-layout-grid__inner">
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
@@ -85,7 +88,8 @@
                                                     <div class="mdc-notched-outline">
                                                         <div class="mdc-notched-outline__leading"></div>
                                                         <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Name Campaigns</labe>
+                                                            <label for="text-field-hero-input" class="mdc-floating-label">Name Campaigns</label>
+
                                                         </div>
                                                         <div class="mdc-notched-outline__trailing"></div>
                                                     </div>
@@ -98,31 +102,20 @@
                                                     <div class="mdc-notched-outline">
                                                         <div class="mdc-notched-outline__leading"></div>
                                                         <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">GoalAmount</labe>
+                                                            <label for="GoalAmount" class="mdc-floating-label">GoalAmount</label>
                                                         </div>
                                                         <div class="mdc-notched-outline__trailing"></div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="CurrentAmount" name="CurrentAmount">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">CurrentAmount</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
                                                 <div class="mdc-text-field mdc-text-field--outlined">
                                                     <input class="mdc-text-field__input" id="StartDate" name="StartDate">
                                                     <div class="mdc-notched-outline">
                                                         <div class="mdc-notched-outline__leading"></div>
                                                         <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">StartDate</labe>
+                                                            <label for="StartDate" class="mdc-floating-label">StartDate</label>
                                                         </div>
                                                         <div class="mdc-notched-outline__trailing"></div>
                                                     </div>
@@ -134,7 +127,7 @@
                                                     <div class="mdc-notched-outline">
                                                         <div class="mdc-notched-outline__leading"></div>
                                                         <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">EndDate</labe>
+                                                            <label for="EndDate" class="mdc-floating-label">EndDate</label>
                                                         </div>
                                                         <div class="mdc-notched-outline__trailing"></div>
                                                     </div>
@@ -160,6 +153,8 @@
             </div>
         </div>
     </div>
+
+
 
 </body>
 </html>

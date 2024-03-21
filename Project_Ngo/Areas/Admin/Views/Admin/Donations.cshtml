@@ -3,7 +3,7 @@
     ViewBag.Title = "Donations";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     List<Project_Ngo.Models.Entities.Donations> don = new List<Project_Ngo.Models.Entities.Donations>();
-    if (ViewBag.donation != null) { don = ViewBag.donation; }
+    if (ViewBag.donations != null) { don = ViewBag.donations; }
 }
 
 <html>
@@ -33,6 +33,7 @@
             <thead>
                 <tr>
                     <th>stt</th>
+                    <th>Campaign ID</th>
                     <th>Amount</th>
                     <th>Donation Date</th>
                     <th>Payment method</th>
@@ -47,13 +48,16 @@
                         <td>
                         </td>
                         <td>
+                            @item.CampaignsID
+                        </td>
+                        <td>
                             @item.Amount
                         </td>
                         <td>
                             @item.DonationDate
                         </td>
                         <td>
-                            @item.PaymentMethod\
+                            @item.PaymentMethod
                         </td>
                         <td>
                             @item.Status
@@ -67,100 +71,7 @@
         </table>
     </div>
 
-    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
-        <div class="mdc-card p-0">
-            <h6 class="card-title card-padding pb-0"></h6>
-            <div class="table-responsive">
-                <form action="@Url.Action("AddDonation")" method="post" enctype="multipart/form-data">
-
-                    <div class="mdc-layout-grid">
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12">
-                                <div class="mdc-card">
-                                    <h6 class="card-title">Add Product</h6>
-                                    <div class="template-demo">
-                                        <div class="mdc-layout-grid__inner">
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="Amount" name="Amount">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Amount</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="DonationDate" name="DonationDate">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">DonationDate</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="PaymentMethod" name="PaymentMethod">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">PaymentMethod</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="Status" name="Status">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Status</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <input class="mdc-text-field__input" id="Note" name="Note">
-                                                    <div class="mdc-notched-outline">
-                                                        <div class="mdc-notched-outline__leading"></div>
-                                                        <div class="mdc-notched-outline__notch">
-                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Note</labe>
-                                                        </div>
-                                                        <div class="mdc-notched-outline__trailing"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mdc-layout-grid__inner">
-                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
-                                                <div class="mdc-text-field mdc-text-field--outlined">
-                                                    <button class="mdc-text-field mdc-text-field--outlined">
-                                                        Save
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </form>
-            </div>
-        </div>
-    </div>
+    
 
 </body>
 </html>
