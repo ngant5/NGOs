@@ -142,10 +142,7 @@ namespace Project_Ngo.Views.User
             }
         }
 
-        internal dynamic GetUser()
-        {
-            throw new NotImplementedException();
-        }
+
 
         internal void AddUser(Users model, HttpPostedFileBase image)
         {

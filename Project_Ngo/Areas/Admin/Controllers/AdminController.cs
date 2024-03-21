@@ -109,14 +109,14 @@ namespace Project_Ngo.Areas.Admin.Controllers
 
         public ActionResult Table()
         {
-            ViewBag.Users = UserDao.Instance.GetUser();
+            ViewBag.Users = UserDao.Instance.GetAll();
             ViewBag.Donations = DonationDao.Instance.GetDonation();
             ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
             return View();
         }
         public ActionResult Users()
         {
-            ViewBag.Users = UserDao.Instance.GetUser();
+            ViewBag.Users = UserDao.Instance.GetAll();
             return View();
         }
         public ActionResult Donations()
