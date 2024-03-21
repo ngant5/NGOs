@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Project_Ngo.Controllers
+namespace Project_Ngo.Areas.User.Controllers
 {
     public class UserController : Controller
     {
