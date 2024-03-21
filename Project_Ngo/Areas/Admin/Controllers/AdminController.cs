@@ -116,9 +116,10 @@ namespace Project_Ngo.Areas.Admin.Controllers
         }
         public ActionResult Users()
         {
-            ViewBag.Users = UserDao.Instance.GetAll();
-            return View();
+            var users = UserDao.Instance.GetAll();
+            return View(users);
         }
+
         public ActionResult Donations()
         {
             ViewBag.Donations = DonationDao.Instance.GetDonation();
