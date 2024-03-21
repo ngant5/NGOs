@@ -1,4 +1,5 @@
-﻿using Project_Ngo.Models.Dao;
+﻿using System.Diagnostics;
+using Project_Ngo.Models.Dao;
 using Project_Ngo.Models.Entities;
 using Project_Ngo.Views.User;
 using System;
@@ -14,7 +15,28 @@ namespace Project_Ngo.Areas.Admin.Controllers
         // GET: Admin/Admin
         public ActionResult Index()
         {
-            return View();
+            // Kiểm tra xem Session["typeUser"] có tồn tại không
+            if (Session["typeUser"] != null)
+            {
+                // Lấy giá trị typeUser từ Session
+                bool typeUser = (bool)Session["typeUser"];
+
+                if (typeUser)
+                {
+                    // Nếu typeUser là true, hiển thị nội dung trang chính
+                    return View();
+                }
+                else
+                {
+                    // Nếu typeUser là false, chuyển hướng đến trang đăng nhập
+                    return RedirectToAction("Login", "User");
+                }
+            }
+            else
+            {
+                // Nếu không có Session["typeUser"], chuyển hướng đến trang đăng nhập
+                return RedirectToAction("Login", "User");
+            }
         }
         public ActionResult Login()
         {
@@ -22,22 +44,68 @@ namespace Project_Ngo.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string username, string password)
+        public ActionResult LoginAdmin(string Fullname, string Password)
         {
-            // Logic xác thực tên đăng nhập và mật khẩu ở đây
-            if (username == "admin" && password == "admin")
+            try
             {
-                // Đăng nhập thành công, chuyển hướng đến trang chính
-                return RedirectToAction("Users", "Admin");
+                if (string.IsNullOrEmpty(Fullname) || string.IsNullOrEmpty(Password))
+                {
+                    ViewBag.Error = "Username and password are required fields.";
+                    return View("Login");
+                }
+
+                using (var context = new NGOEntities2())
+                {
+                    var user = context.Users.FirstOrDefault(u => u.FullName == Fullname);
+
+                    if (user != null)
+                    {
+                        if (user.typeUser.HasValue && user.typeUser.Value == true)
+                        {
+                            if (user.Password == Password)
+                            {
+                                Session.Timeout = 30;
+                                Session["Username"] = user.FullName;
+                                Session["UserID"] = user.UserID;
+                                Session["typeUser"] = user.typeUser;
+                                Debug.WriteLine("Login successful as admin.");
+
+                                return RedirectToAction("Index", "Admin");
+                            }
+                            else
+                            {
+                                ViewBag.Error = "Invalid username or password.";
+                                
+                                return RedirectToAction("Index", "User");
+
+
+                            }
+                        }
+                        else
+                        {
+                            ViewBag.Error = "You are not authorized to access the admin panel.";
+                            return RedirectToAction("Index", "User");
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Error = "Invalid username or password.";
+                        return View("~/Views/User/Register.cshtml");
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // Đăng nhập không thành công, hiển thị thông báo lỗi
-                ViewBag.Error = "Invalid username or password";
-                return View();
+                ViewBag.Error = "An error occurred while processing your request. Please try again later.";
+                Console.WriteLine(ex.Message);
+                return View("Error");
             }
         }
-       public ActionResult Table()
+
+
+
+
+        public ActionResult Table()
         {
             ViewBag.Users = UserDao.Instance.GetUser();
             ViewBag.Donations = DonationDao.Instance.GetDonation();
@@ -90,47 +158,6 @@ namespace Project_Ngo.Areas.Admin.Controllers
             UserDao.Instance.Delete(id);
             return RedirectToAction("Table");// parameter: action name
         }
-        [HttpPost]
-        public ActionResult LoginAdmin(string Fullname, string Password)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(Fullname) || string.IsNullOrEmpty(Password))
-                {
-                    ViewBag.Error = "Username and password are required fields.";
-                    return View("Login");
-                }
-
-                using (var context = new NGOEntities2())
-                {
-
-                    var Users = context.Users.FirstOrDefault(u => u.FullName == Fullname);
-
-                    if (Users != null && Users.Password == Password)
-                    {
-
-                        Session.Timeout = 30;
-                        Session["Username"] = Users.FullName;
-                        Session["UserID"] = Users.UserID;
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-
-                        ViewBag.Error = "Invalid username or password.";
-                        return View("Login");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-                ViewBag.Error = "An error occurred while processing your request. Please try again later.";
-
-                Console.WriteLine(ex.Message);
-
-                return View("Error");
-            }
-        }
+        
     }
 }

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Campaigns";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-    List<Project_Ngo.Models.Entities.Campaign> cam = new List<Project_Ngo.Models.Entities.Campaign>();
+    List<Project_Ngo.Models.Entities.Campaigns> cam = new List<Project_Ngo.Models.Entities.Campaigns>();
     if (ViewBag.campaigns != null) { cam = ViewBag.campaigns; }
 }
 
@@ -41,7 +41,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Project_Ngo.Models.Entities.Campaign item in cam)
+                @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
                 {
                     <tr>
                         <td>
