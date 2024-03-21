@@ -1154,6 +1154,7 @@
     <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Donations.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Campaigns.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\CampaignDetails.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />

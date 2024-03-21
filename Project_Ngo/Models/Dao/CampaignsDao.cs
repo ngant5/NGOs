@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Project_Ngo.Models.Dao
 {
@@ -48,5 +49,25 @@ namespace Project_Ngo.Models.Dao
                 Debug.WriteLine(ex.Message);
             }
         }
+        public IEnumerable<Campaigns> GetCampaignById(int id)
+        {
+            try
+            {
+                NGOEntities2 en = new NGOEntities2();
+                var campaignDetails = en.Campaigns.Where(c => c.CampaignsID == id).ToList();
+                return campaignDetails;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+
+
+
+
+
     }
 }

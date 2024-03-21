@@ -129,6 +129,14 @@ namespace Project_Ngo.Areas.Admin.Controllers
             ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
             return View();
         }
+        public ActionResult CampaignDetails()
+        {
+            var campaigns = CampaignsDao.Instance.GetCampaigns();
+            var campaign = campaigns.FirstOrDefault(); // Lấy phần tử đầu tiên từ danh sách
+            return View(campaign);
+        }
+
+
         [HttpPost]
         public ActionResult AddUser(Users model, HttpPostedFileBase image)
         {

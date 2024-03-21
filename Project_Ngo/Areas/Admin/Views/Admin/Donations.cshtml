@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Donations";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
     List<Project_Ngo.Models.Entities.Donations> don = new List<Project_Ngo.Models.Entities.Donations>();
@@ -34,7 +33,7 @@
                 <tr>
                     <th>stt</th>
                     <th>Campaign ID</th>
-                    <th>Amount</th>
+                    <th>Total Amount</th>
                     <th>Donation Date</th>
                     <th>Payment method</th>
                     <th>Status</th>
@@ -42,37 +41,21 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (Project_Ngo.Models.Entities.Donations item in don)
+                @foreach (var group in don.GroupBy(d => d.CampaignsID))
                 {
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                            @item.CampaignsID
-                        </td>
-                        <td>
-                            @item.Amount
-                        </td>
-                        <td>
-                            @item.DonationDate
-                        </td>
-                        <td>
-                            @item.PaymentMethod
-                        </td>
-                        <td>
-                            @item.Status
-                        </td>
-                        <td>
-                            @item.Note
-                        </td>
+                        <td></td>
+                        <td><a href="@Url.Action("CampaignDetails", new { id = group.Key })">@group.Key</a></td>
+                        <td>@group.Sum(d => d.Amount)</td>
+                        <td>@group.First().DonationDate</td>
+                        <td>@group.First().PaymentMethod</td>
+                        <td>@group.First().Status</td>
+                        <td>@group.First().Note</td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
 
-    
-
 </body>
 </html>
-
