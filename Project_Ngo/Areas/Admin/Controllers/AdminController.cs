@@ -1,9 +1,9 @@
-﻿using System.Diagnostics;
-using Project_Ngo.Models.Dao;
+﻿using Project_Ngo.Models.Dao;
 using Project_Ngo.Models.Entities;
 using Project_Ngo.Views.User;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -75,7 +75,7 @@ namespace Project_Ngo.Areas.Admin.Controllers
                             else
                             {
                                 ViewBag.Error = "Invalid username or password.";
-                                
+
                                 return RedirectToAction("Index", "User");
 
 
@@ -158,6 +158,6 @@ namespace Project_Ngo.Areas.Admin.Controllers
             UserDao.Instance.Delete(id);
             return RedirectToAction("Table");// parameter: action name
         }
-        
+
     }
 }

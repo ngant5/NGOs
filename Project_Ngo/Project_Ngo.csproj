@@ -121,8 +121,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Areas\Dashboard\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Dashboard\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\User\Controllers\UserController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -1062,8 +1062,6 @@
     <Content Include="Content\asset\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\asset\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\asset\fonts\FontAwesome.otf" />
-    <Content Include="Areas\Dashboard\Views\web.config" />
-    <Content Include="Areas\Dashboard\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Content\Admin\assets\css\maps\demo\style.css.map" />
     <Content Include="Content\Admin\assets\css\maps\demo_1\style.css.map" />
     <Content Include="Content\Admin\assets\fonts\roboto\Roboto-Bold.eot" />
@@ -1127,13 +1125,7 @@
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.ttf" />
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
-    <Content Include="Areas\Dashboard\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Dashboard\Views\Admin\Login.cshtml" />
-    <Content Include="Areas\Dashboard\Views\Admin\Table.cshtml" />
     <Compile Include="Models\Dao\CampaignsDao.cs" />
-    <Content Include="Areas\Dashboard\Views\Admin\Users.cshtml" />
-    <Content Include="Areas\Dashboard\Views\Admin\Donations.cshtml" />
-    <Content Include="Areas\Dashboard\Views\Admin\Campaigns.cshtml" />
     <EntityDeploy Include="Models\Entities\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1154,6 +1146,7 @@
     <Content Include="Areas\User\Views\User\UpdateSuccessPopup.cshtml" />
     <Content Include="Areas\User\Views\User\Error.cshtml" />
     <Content Include="Areas\User\Views\User\Donate.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -1184,8 +1177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Dashboard\Data\" />
-    <Folder Include="Areas\Dashboard\Views\User\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Admin\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Content\Upload\" />
   </ItemGroup>
