@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    List<Project_Ngo.Models.Entities.Users> nv = new List<Project_Ngo.Models.Entities.Users>();
+    if (ViewBag.user != null) { nv = ViewBag.user; }
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style type='text/css'>
+        #numbered-table {
+            counter-reset: rowNumber; /* Reset counter for each table */
+        }
+
+            #numbered-table tbody tr {
+                counter-increment: rowNumber; /* Increment counter for each row */
+            }
+
+                #numbered-table tbody tr td:first-child::before {
+                    content: counter(rowNumber); /* Display row number */
+                    min-width: 1em; /* Ensure space for at least one digit */
+                    margin-right: 0.5em; /* Add some spacing between number and content */
+                }
+    </style>
+</head>
+<body>
+    <div>
+        <table class="table table-striped" width="700" border="1" id="numbered-table">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Name</th>
+                    <th>email</th>
+                    <th>pasword</th>
+                    <th>phone</th>
+                    <th>image</th>
+                    <th>typeuser</th>
+                    <th>NumberAccount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.Users item in nv)
+                {
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @item.FullName
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Password
+                        </td>
+                        <td>
+                            @item.Phone
+                        </td>
+                        <td>
+                            <img src="~/Content/asset/img/bg-img/@item.image" width="40" height="40" />
+                        </td>
+                        <td>
+                            @item.typeUser
+                        </td>
+                        <td>
+                            @item.NumberAccount
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+        <div class="mdc-card p-0">
+            <h6 class="card-title card-padding pb-0"></h6>
+            <div class="table-responsive">
+                <form action="@Url.Action("AddUser")" method="post" enctype="multipart/form-data">
+
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <div class="mdc-card">
+                                    <h6 class="card-title">Add Product</h6>
+                                    <div class="template-demo">
+                                        <div class="mdc-layout-grid__inner">
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input class="mdc-text-field__input" id="FullName" name="FullName">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Name</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input class="mdc-text-field__input" id="Email" name="Email">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Email</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input class="mdc-text-field__input" id="Password" name="Password">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Password</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input class="mdc-text-field__input" id="Phone" name="Phone">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Phone</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input type="file" name="image" id="image" class="mdc-text-field__input">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="file" class="mdc-floating-label">Choose file</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-form-field">
+                                                    <div class="mdc-checkbox">
+                                                        <input type="checkbox" class="mdc-checkbox__native-control" id="typeUser" name="typeUser" value="false">
+                                                        <div class="mdc-checkbox__background">
+                                                            <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                                                                <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+                                                            </svg>
+                                                            <div class="mdc-checkbox__mixedmark"></div>
+                                                        </div>
+                                                    </div>
+                                                    <label for="P_active">TypeUser</label>
+                                                </div>
+                                            </div>
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <input class="mdc-text-field__input" id="NumberAccount" name="NumberAccount">
+                                                    <div class="mdc-notched-outline">
+                                                        <div class="mdc-notched-outline__leading"></div>
+                                                        <div class="mdc-notched-outline__notch">
+                                                            <labe for="text-field-hero-input" class="mdc-floating-label">Number Account</labe>
+                                                        </div>
+                                                        <div class="mdc-notched-outline__trailing"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="mdc-layout-grid__inner">
+                                            <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6-desktop">
+                                                <div class="mdc-text-field mdc-text-field--outlined">
+                                                    <button class="mdc-text-field mdc-text-field--outlined">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

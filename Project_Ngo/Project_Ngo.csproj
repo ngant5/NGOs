@@ -1147,6 +1147,13 @@
     <Content Include="Areas\User\Views\User\Error.cshtml" />
     <Content Include="Areas\User\Views\User\Donate.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Donations.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Campaigns.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -1178,8 +1185,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\Admin\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Content\Upload\" />
   </ItemGroup>
