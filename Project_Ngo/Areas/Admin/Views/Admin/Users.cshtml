@@ -23,6 +23,12 @@
                     min-width: 1em; /* Ensure space for at least one digit */
                     margin-right: 0.5em; /* Add some spacing between number and content */
                 }
+
+        /* CSS cho hover effect */
+        tr:hover {
+            cursor: pointer;
+            background-color: #f5f5f5;
+        }
     </style>
 </head>
 <body>
@@ -44,22 +50,24 @@
                     {
                         <tr>
                             <td></td>
-                            <td>@user.FullName</td>
+                            <td><a href="@Url.Action("DonationDetails", "Admin", new { userId = user.UserID })">@user.FullName</a></td>
+
                             <td>@user.Email</td>
                             <td>@user.Phone</td>
-
                         </tr>
-                    }
+                    
+
                 }
-            </tbody>
-        </table>
+            }
+                </tbody>
+            </table>
     </div>
 
     <div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
         <div class="mdc-card p-0">
             <h6 class="card-title card-padding pb-0"></h6>
             <div class="table-responsive">
-                <form action="@Url.Action("AddUser")" method="post" enctype="multipart/form-data">
+                <form action="@Url.Action("AddAdmin")" method="post" enctype="multipart/form-data">
                     <!-- Nội dung form thêm User -->
                 </form>
             </div>

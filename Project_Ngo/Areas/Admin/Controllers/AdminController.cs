@@ -169,6 +169,24 @@ namespace Project_Ngo.Areas.Admin.Controllers
             UserDao.Instance.Delete(id);
             return RedirectToAction("Table");// parameter: action name
         }
+        public ActionResult DonationDetails(int? userId)
+        {
+            if (userId == null)
+            {
+                return RedirectToAction("Error");
+            }
+            else
+            {
+                
+                int userIdValue = userId.Value;
+                var donations = DonationDao.Instance.GetDonationByUserId(userIdValue);
+                var user = UserDao.Instance.GetById(userIdValue);
+                ViewBag.UserFullName = user.FullName;
+                return View(donations);
+            }
+        }
+
+
 
     }
 }

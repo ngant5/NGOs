@@ -63,6 +63,35 @@ namespace Project_Ngo.Views.User
             try
             {
                 NGOEntities2 en = new NGOEntities2();
+                model.typeUser = false;
+                model.NumberAccount = "";
+
+
+                if (imageFile != null && imageFile.ContentLength > 0)
+                {
+                    string fileName = DateTime.Now.Ticks + Path.GetFileName(imageFile.FileName);
+                    string path = Path.Combine(HttpContext.Current.Server.MapPath("~/Uploads"), fileName);
+                    imageFile.SaveAs(path);
+                    model.image = fileName;
+                    // Debug
+                    Debug.WriteLine($"File saved successfully to: {path}");
+
+                }
+
+                en.Users.Add(model);
+                en.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        public void NewAdmin(Users model, HttpPostedFileBase imageFile)
+        {
+            try
+            {
+                NGOEntities2 en = new NGOEntities2();
                 model.typeUser = true;
                 model.NumberAccount = "";
 
@@ -86,6 +115,7 @@ namespace Project_Ngo.Views.User
                 Debug.WriteLine(ex.Message);
             }
         }
+
 
         public int Update(Users model, HttpPostedFileBase imageFile)
         {

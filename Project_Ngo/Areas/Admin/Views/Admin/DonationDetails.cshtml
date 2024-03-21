@@ -1,0 +1,48 @@
+﻿
+@model List<Project_Ngo.Models.Entities.Donations>
+
+@{
+    ViewBag.Title = "Donation Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Donation Details</title>
+</head>
+<body>
+    <div>
+        <h2>Donation Details for @ViewBag.UserFullName</h2>
+
+        <table class="table table-striped" width="700" border="1">
+            <thead>
+                <tr>
+
+                    <th>Campaign ID</th>
+                    <th>Amount</th>
+                    <th>Donation Date</th>
+                    <th>Payment Method</th>
+                    <th>Status</th>
+                    <th>Note</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var donation in Model)
+                {
+                    <tr>
+
+                        <td>@donation.CampaignsID</td>
+                        <td>@donation.Amount</td>
+                        <td>@donation.DonationDate</td>
+                        <td>@donation.PaymentMethod</td>
+                        <td>@donation.Status</td>
+                        <td>@donation.Note</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
+
