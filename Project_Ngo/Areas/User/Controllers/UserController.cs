@@ -1,4 +1,5 @@
 ﻿using Project_Ngo.Models.Entities;
+using Project_Ngo.Models.Dao;
 using Project_Ngo.Views.User;
 using System;
 using System.Collections.Generic;
@@ -84,7 +85,9 @@ namespace Project_Ngo.Areas.User.Controllers
                         Session.Timeout = 30;
                         Session["Username"] = user.FullName;
                         Session["UserID"] = user.UserID;
-                        return RedirectToAction("Welcome");
+                        ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+
+                        return RedirectToAction("ShowCampaigns");
                     }
                     else
                     {
@@ -104,6 +107,19 @@ namespace Project_Ngo.Areas.User.Controllers
                 return View("Error");
             }
         }
+
+        public ActionResult ShowCampaigns()
+        {
+            ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+            return View();
+        }
+        public ActionResult CampaignDetails()
+        {
+            var campaigns = CampaignsDao.Instance.GetCampaigns();
+            var campaign = campaigns.FirstOrDefault(); // Lấy phần tử đầu tiên từ danh sách
+            return View(campaign);
+        }
+
         public ActionResult Welcome()
         {
 

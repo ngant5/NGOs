@@ -1,0 +1,78 @@
+﻿
+
+@{
+    ViewBag.Title = "ShowCampaigns";
+    Layout = "~/Areas/User/Views/Shared/_Layout_Project.cshtml";
+    List<Project_Ngo.Models.Entities.Campaigns> cam = new List<Project_Ngo.Models.Entities.Campaigns>();
+    if (ViewBag.campaigns != null) { cam = ViewBag.campaigns; }
+}
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style type='text/css'>
+        #numbered-table {
+            counter-reset: rowNumber; /* Reset counter for each table */
+        }
+
+            #numbered-table tbody tr {
+                counter-increment: rowNumber; /* Increment counter for each row */
+            }
+
+                #numbered-table tbody tr td:first-child::before {
+                    content: counter(rowNumber); /* Display row number */
+                    min-width: 1em; /* Ensure space for at least one digit */
+                    margin-right: 0.5em; /* Add some spacing between number and content */
+                }
+    </style>
+</head>
+<body>
+
+    <div>
+        <table class="table table-striped" width="700" border="1" id="numbered-table">
+            <thead>
+                <tr>
+                    <th>stt</th>
+                    <th>Name</th>
+                    <th>Goal Amount</th>
+                    <th>Current Amount</th>
+                    <th>Start Date</th>
+                    <th>End date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
+                {
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            @item.NameCampaign
+                        </td>
+                        <td>
+                            @item.GoalAmount
+                        </td>
+                        <td>
+                            @item.CurrentAmount
+                        </td>
+                        <td>
+                            @item.StartDate
+                        </td>
+                        <td>
+                            @item.EndDate
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    
+
+
+
+</body>
+</html>
