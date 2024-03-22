@@ -31,46 +31,53 @@
     </style>
 </head>
 <body>
-
-    <div>
-        <table class="table table-striped" width="700" border="1" id="numbered-table">
-            <thead>
-                <tr>
-                    <th>stt</th>
-                    <th>Name</th>
-                    <th>Goal Amount</th>
-                    <th>Current Amount</th>
-                    <th>Start Date</th>
-                    <th>End date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
-                {
+    @if (Session["UserID"] != null)
+    {
+        <h3>Welcome, @(Session["Username"].ToString())!</h3>
+        <div>
+            <table class="table table-striped" width="700" border="1" id="numbered-table">
+                <thead>
                     <tr>
-                        <td>
-                        </td>
-                        <td>
-                            @item.NameCampaign
-                        </td>
-                        <td>
-                            @item.GoalAmount
-                        </td>
-                        <td>
-                            @item.CurrentAmount
-                        </td>
-                        <td>
-                            @item.StartDate
-                        </td>
-                        <td>
-                            @item.EndDate
-                        </td>
+                        <th>stt</th>
+                        <th>Name</th>
+                        <th>Goal Amount</th>
+                        <th>Current Amount</th>
+                        <th>Start Date</th>
+                        <th>End date</th>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    
+                </thead>
+                <tbody>
+                    @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
+                    {
+                        <tr>
+                            <td>
+                            </td>
+                            <td>
+                                @item.NameCampaign
+                            </td>
+                            <td>
+                                @item.GoalAmount
+                            </td>
+                            <td>
+                                @item.CurrentAmount
+                            </td>
+                            <td>
+                                @item.StartDate
+                            </td>
+                            <td>
+                                @item.EndDate
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        Response.Redirect("~/User");
+    }
+
 
 
 

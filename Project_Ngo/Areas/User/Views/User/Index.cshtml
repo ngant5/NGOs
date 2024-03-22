@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/User/Views/Shared/_Layout_Project.cshtml";
     List<Project_Ngo.Models.Entities.Campaigns> cam = new List<Project_Ngo.Models.Entities.Campaigns>();
-    if (Session["Username"] != null && ViewBag.campaigns != null)
+    if (ViewBag.campaigns != null)
     {
         cam = ViewBag.campaigns;
     }
@@ -13,45 +13,54 @@
         @if (Session["Username"] != null)
         {
             <p>Welcome, @(Session["Username"].ToString())!</p>
-            <p>You are now logged in.</p>
-            if (ViewBag.campaigns != null && ViewBag.campaigns.Count > 0)
-            {
-                // Hiển thị danh sách chiến dịch
-                <table>
+            <div>
+                <table class="table table-striped" width="700" border="1" id="numbered-table">
                     <thead>
                         <tr>
+                            <th>stt</th>
                             <th>Name</th>
                             <th>Goal Amount</th>
                             <th>Current Amount</th>
                             <th>Start Date</th>
-                            <th>End Date</th>
-                            <!-- Thêm các cột khác tùy theo nhu cầu -->
+                            <th>End date</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
                         {
                             <tr>
-                                <td>@item.NameCampaign</td>
-                                <td>@item.GoalAmount</td>
-                                <td>@item.CurrentAmount</td>
-                                <td>@item.StartDate</td>
-                                <td>@item.EndDate</td>
-                                <!-- Thêm các cột khác tùy theo nhu cầu -->
+                                <td>
+                                </td>
+                                <td>
+                                    @item.NameCampaign
+                                </td>
+                                <td>
+                                    @item.GoalAmount
+                                </td>
+                                <td>
+                                    @item.CurrentAmount
+                                </td>
+                                <td>
+                                    @item.StartDate
+                                </td>
+                                <td>
+                                    @item.EndDate
+                                </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-            }
-            else
-            {
-                <p>No campaigns available.</p>
-            }
+            </div>
+
+
         }
         else
         {
-            <p>Welcome, Guest!</p>
-            <p>Please register or log in to access more features.</p>
+            <h1>Welcome to Our Organization!</h1>
+            <p>We are a non-profit organization dedicated to meaningful donation projects. From providing clean water to constructing educational centers, your contributions matter greatly.</p>
+            <p>Join us in making a difference!</p>
+            <p>For more information about our projects and how to contribute, please visit our website today.</p>
+      
         }
     </div>
 </body>
