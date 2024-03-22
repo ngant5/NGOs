@@ -47,15 +47,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (Project_Ngo.Models.Entities.Campaigns item in cam)
+                    @foreach (var item in ViewBag.campaigns)
+
                     {
                         <tr>
                             <td>
                             </td>
                             <td>
                                 <a href="@Url.Action("ShowCampaignDetails", new { id = item.CampaignsID })">@item.NameCampaign</a>
-
                             </td>
+
                             <td>
                                 @item.GoalAmount
                             </td>

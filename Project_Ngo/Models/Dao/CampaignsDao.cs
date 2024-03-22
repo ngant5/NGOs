@@ -64,6 +64,23 @@ namespace Project_Ngo.Models.Dao
             }
         }
 
+        public Campaigns GetCampaignDetailById(int id)
+        {
+            try
+            {
+                NGOEntities2 en = new NGOEntities2();
+                var campaign = en.Campaigns.FirstOrDefault(c => c.CampaignsID == id);
+                return campaign;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
+
+
+
 
 
 

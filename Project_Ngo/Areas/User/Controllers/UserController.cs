@@ -117,16 +117,30 @@ namespace Project_Ngo.Areas.User.Controllers
             }
             else
             {
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("Index", "User", new { area = "User" });
             }
         }
 
-        public ActionResult CampaignDetails()
+        public ActionResult ShowCampaignDetails(int id)
         {
-            var campaigns = CampaignsDao.Instance.GetCampaigns();
-            var campaign = campaigns.FirstOrDefault(); // Lấy phần tử đầu tiên từ danh sách
-            return View(campaign);
+            if (Session["UserID"] != null)
+            {
+                var campaign = CampaignsDao.Instance.GetCampaignDetailById(id);
+                
+                if (campaign == null)
+                {
+                    return HttpNotFound();
+                }
+
+                return View(campaign);
+            }
+            else
+            {
+                return RedirectToAction("Index", "User", new { area = "User" });
+            }
         }
+
 
         public ActionResult Welcome()
         {
