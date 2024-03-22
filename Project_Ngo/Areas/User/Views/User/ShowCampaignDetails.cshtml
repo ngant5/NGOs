@@ -1,0 +1,47 @@
+﻿
+@model Project_Ngo.Models.Entities.Campaigns
+@{
+    ViewBag.Title = "CampaignDetails";
+    Layout = "~/Areas/User/Views/Shared/_Layout_Project.cshtml";
+}
+
+
+<h2>@Model.NameCampaign</h2>
+
+<div>
+    <table class="table table-striped" width="700" border="1" id="numbered-table">
+        <thead>
+            <tr>
+
+                <th>Name</th>
+                <th>Goal Amount</th>
+                <th>Current Amount</th>
+                <th>Start Date</th>
+                <th>End date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+
+                <td>@Model.NameCampaign</td>
+                <td>@Model.GoalAmount</td>
+                <td>@Model.CurrentAmount</td>
+                <td>@Model.StartDate</td>
+                <td>@Model.EndDate</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="mdc-layout-grid__cell stretch-card mdc-layout-grid__cell--span-6">
+    <div class="mdc-card p-0">
+        <h6 class="card-title card-padding pb-0"></h6>
+        <div class="table-responsive">
+            <form action="@Url.Action("AddCampaign")" method="post" enctype="multipart/form-data">
+                <!-- Form fields for adding a campaign -->
+            </form>
+        </div>
+    </div>
+</div>
+
+

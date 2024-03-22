@@ -53,7 +53,8 @@
                             <td>
                             </td>
                             <td>
-                                @item.NameCampaign
+                                <a href="@Url.Action("ShowCampaignDetails", new { id = item.CampaignsID })">@item.NameCampaign</a>
+
                             </td>
                             <td>
                                 @item.GoalAmount
@@ -75,7 +76,7 @@
     }
     else
     {
-        Response.Redirect("~/User");
+        <p>No campaign</p>
     }
 
 

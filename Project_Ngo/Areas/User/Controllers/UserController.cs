@@ -110,9 +110,17 @@ namespace Project_Ngo.Areas.User.Controllers
 
         public ActionResult ShowCampaigns()
         {
-            ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
-            return View();
+            if (Session["UserID"] != null)
+            {
+                ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
+
         public ActionResult CampaignDetails()
         {
             var campaigns = CampaignsDao.Instance.GetCampaigns();
