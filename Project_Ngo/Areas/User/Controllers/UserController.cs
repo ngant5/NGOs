@@ -79,7 +79,7 @@ namespace Project_Ngo.Areas.User.Controllers
 
                     var user = context.Users.FirstOrDefault(u => u.FullName == Fullname);
 
-                    if (user != null && user.Password == Password)
+                    if (user != null && user.typeUser.HasValue && user.typeUser.Value == false && user.Password == Password )
                     {
 
                         Session.Timeout = 30;

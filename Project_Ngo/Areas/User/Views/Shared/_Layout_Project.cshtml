@@ -106,11 +106,12 @@
 
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="@Url.Action("Index", "User")">Home</a></li>
                                     <li><a href="@Url.Action("About", "User")">About</a></li>
+                                    <li><a href="@Url.Action("ShowCampaigns", "User")">Campaigns</a></li>
                                     <li><a href="@Url.Action("Donate", "User")">Donate</a></li>
                                     <li><a href="@Url.Action("Partners", "User")">Our Partners</a></li>
-                                    <li><a href="@Url.Action("HelpCentre", "User")">Help Centre</a></li>
+                                    @*<li><a href="@Url.Action("HelpCentre", "User")">Help Centre</a></li>*@
                                     <li><a href="@Url.Action("Contact", "User")">Contact</a></li>
                                 </ul>
                                 <div id="searchIcon">
