@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "AddDonation";
+    Layout = "~/Areas/User/Views/Shared/_Layout_Project.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donation Success</title>
+    <!-- Include any necessary CSS stylesheets here -->
+    <style>
+        /* CSS styles for the popup */
+        #donationSuccessPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Popup for donation success -->
+    <div id="donationSuccessPopup">
+        <h2>Thank You for Your Donation!</h2>
+        <!-- You can customize this message further if needed -->
+        <p>Your donation has been successfully submitted.</p>
+    </div>
+
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        // Show the donation success popup when the page loads
+        $('#donationSuccessPopup').show();
+        // Automatically hide the popup after 3 seconds
+        setTimeout(function () {
+            $('#donationSuccessPopup').hide();
+            // Redirect to the appropriate page after the popup is closed
+            window.location.href = '@Url.Action("ShowCampaignDetails")';
+        }, 3000);
+    });
+    </script>
+
+</body>
+</html>

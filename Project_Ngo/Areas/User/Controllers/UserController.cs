@@ -122,12 +122,12 @@ namespace Project_Ngo.Areas.User.Controllers
             }
         }
 
-        public ActionResult ShowCampaignDetails(int id)
+        public ActionResult ShowCampaignDetails(int? id)
         {
-            if (Session["UserID"] != null)
+            if (id.HasValue && Session["UserID"] != null)
             {
-                var campaign = CampaignsDao.Instance.GetCampaignDetailById(id);
-                
+                var campaign = CampaignsDao.Instance.GetCampaignDetailById(id.Value);
+
                 if (campaign == null)
                 {
                     return HttpNotFound();
@@ -140,6 +140,7 @@ namespace Project_Ngo.Areas.User.Controllers
                 return RedirectToAction("Index", "User", new { area = "User" });
             }
         }
+
 
 
         public ActionResult Welcome()
@@ -224,6 +225,13 @@ namespace Project_Ngo.Areas.User.Controllers
 
             Session.Clear();
             return RedirectToAction("Index", "User");
+        }
+
+        public ActionResult AddDonation(Donations model)
+        {
+            DonationDao.Instance.AddDonation(model);
+            
+            return View("DonationSuccess");
         }
     }
 }
