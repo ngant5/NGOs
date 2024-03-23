@@ -8,17 +8,17 @@ using System.Web.Mvc;
 
 namespace Project_Ngo.Models.Dao
 {
-	public class CampaignsDao
+	public class CampaignDAO
 	{
-		private static CampaignsDao instance = null;
+		private static CampaignDAO instance = null;
 
-        private CampaignsDao() { }
+        private CampaignDAO() { }
 
-        public static CampaignsDao Instance
+        public static CampaignDAO Instance
         {
             get
             {
-                if (instance == null) { instance = new CampaignsDao(); }
+                if (instance == null) { instance = new CampaignDAO(); }
                 return instance;
             }
         }

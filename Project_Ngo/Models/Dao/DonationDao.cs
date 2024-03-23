@@ -7,21 +7,21 @@ using System.Web;
 
 namespace Project_Ngo.Models.Dao
 {
-    public class DonationDao
+    public class DonationDAO
     {
-        private static DonationDao instance = null;
+        private static DonationDAO instance = null;
         private NGOEntities2 _dbContext; // Thêm biến _dbContext
 
-        private DonationDao()
+        private DonationDAO()
         {
             _dbContext = new NGOEntities2(); // Khởi tạo _dbContext trong constructor
         }
 
-        public static DonationDao Instance
+        public static DonationDAO Instance
         {
             get
             {
-                if (instance == null) { instance = new DonationDao(); }
+                if (instance == null) { instance = new DonationDAO(); }
                 return instance;
             }
         }

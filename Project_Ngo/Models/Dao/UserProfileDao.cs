@@ -8,15 +8,15 @@ using System.Web;
 
 namespace Project_Ngo.Views.User
 {
-    public sealed class UserDao
+    public sealed class UserProfileDao
     {
-        private static UserDao instance = null;
-        private UserDao() { }
-        public static UserDao Instance
+        private static UserProfileDao instance = null;
+        private UserProfileDao() { }
+        public static UserProfileDao Instance
         {
             get
             {
-                if (instance == null) { instance = new UserDao(); }
+                if (instance == null) { instance = new UserProfileDao(); }
                 return instance;
             }
         }

@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Project_Ngo.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    public class DashboardController : Controller
     {
         // GET: Admin/Admin
         public ActionResult Index()
@@ -109,30 +109,30 @@ namespace Project_Ngo.Areas.Admin.Controllers
 
         public ActionResult Table()
         {
-            ViewBag.Users = UserDao.Instance.GetAll();
-            ViewBag.Donations = DonationDao.Instance.GetDonation();
-            ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+            ViewBag.Users = UserProfileDao.Instance.GetAll();
+            ViewBag.Donations = DonationDAO.Instance.GetDonation();
+            ViewBag.campaigns = CampaignDAO.Instance.GetCampaigns();
             return View();
         }
         public ActionResult Users()
         {
-            var users = UserDao.Instance.GetAll();
+            var users = UserProfileDao.Instance.GetAll();
             return View(users);
         }
 
         public ActionResult Donations()
         {
-            ViewBag.Donations = DonationDao.Instance.GetDonation();
+            ViewBag.Donations = DonationDAO.Instance.GetDonation();
             return View();
         }
         public ActionResult Campaigns()
         {
-            ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+            ViewBag.campaigns = CampaignDAO.Instance.GetCampaigns();
             return View();
         }
         public ActionResult CampaignDetails()
         {
-            var campaigns = CampaignsDao.Instance.GetCampaigns();
+            var campaigns = CampaignDAO.Instance.GetCampaigns();
             var campaign = campaigns.FirstOrDefault(); // Lấy phần tử đầu tiên từ danh sách
             return View(campaign);
         }
@@ -144,7 +144,7 @@ namespace Project_Ngo.Areas.Admin.Controllers
             //string dep_name = Request.Form["dep_name"]; // cach lay tu form
             //string dep_name = Request.Params["dep_name"]; // get params
             // string dep_name = model.dep_name; // target : test get value
-            UserDao.Instance.AddUser(model, image);
+            UserProfileDao.Instance.AddUser(model, image);
             return RedirectToAction("Table");
         }
         public ActionResult AddDonation(Donations model)
@@ -152,7 +152,7 @@ namespace Project_Ngo.Areas.Admin.Controllers
             //string dep_name = Request.Form["dep_name"]; // cach lay tu form
             //string dep_name = Request.Params["dep_name"]; // get params
             // string dep_name = model.dep_name; // target : test get value
-            DonationDao.Instance.AddDonation(model);
+            DonationDAO.Instance.AddDonation(model);
             return RedirectToAction("Table");
         }
         public ActionResult AddCampaign(Campaigns model)
@@ -160,13 +160,13 @@ namespace Project_Ngo.Areas.Admin.Controllers
             //string dep_name = Request.Form["dep_name"]; // cach lay tu form
             //string dep_name = Request.Params["dep_name"]; // get params
             // string dep_name = model.dep_name; // target : test get value
-            CampaignsDao.Instance.AddCampaigns(model);
+            CampaignDAO.Instance.AddCampaigns(model);
             return RedirectToAction("Table");
         }
         public ActionResult DeleteUser(int id)
         {
             // int idItem = id; // debug
-            UserDao.Instance.Delete(id);
+            UserProfileDao.Instance.Delete(id);
             return RedirectToAction("Table");// parameter: action name
         }
         public ActionResult DonationDetails(int? userId)
@@ -179,8 +179,8 @@ namespace Project_Ngo.Areas.Admin.Controllers
             {
                 
                 int userIdValue = userId.Value;
-                var donations = DonationDao.Instance.GetDonationByUserId(userIdValue);
-                var user = UserDao.Instance.GetById(userIdValue);
+                var donations = DonationDAO.Instance.GetDonationByUserId(userIdValue);
+                var user = UserProfileDao.Instance.GetById(userIdValue);
                 ViewBag.UserFullName = user.FullName;
                 return View(donations);
             }

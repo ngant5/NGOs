@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Project_Ngo.Areas.User.Controllers
 {
-    public class UserController : Controller
+    public class ProfileController : Controller
     {
         // GET: User
         public ActionResult Index()
@@ -48,7 +48,7 @@ namespace Project_Ngo.Areas.User.Controllers
         public ActionResult NewAccount(Users model, HttpPostedFileBase image)
 
         {
-            UserDao.Instance.NewUser(model, image);
+            UserProfileDao.Instance.NewUser(model, image);
             return RedirectToAction("index");
 
         }
@@ -85,7 +85,7 @@ namespace Project_Ngo.Areas.User.Controllers
                         Session.Timeout = 30;
                         Session["Username"] = user.FullName;
                         Session["UserID"] = user.UserID;
-                        ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+                        ViewBag.campaigns = CampaignDAO.Instance.GetCampaigns();
 
                         return RedirectToAction("ShowCampaigns");
                     }
@@ -112,7 +112,7 @@ namespace Project_Ngo.Areas.User.Controllers
         {
             if (Session["UserID"] != null)
             {
-                ViewBag.campaigns = CampaignsDao.Instance.GetCampaigns();
+                ViewBag.campaigns = CampaignDAO.Instance.GetCampaigns();
                 return View();
             }
             else
@@ -126,7 +126,7 @@ namespace Project_Ngo.Areas.User.Controllers
         {
             if (id.HasValue && Session["UserID"] != null)
             {
-                var campaign = CampaignsDao.Instance.GetCampaignDetailById(id.Value);
+                var campaign = CampaignDAO.Instance.GetCampaignDetailById(id.Value);
 
                 if (campaign == null)
                 {
@@ -171,7 +171,7 @@ namespace Project_Ngo.Areas.User.Controllers
                 if (UserID != null)
                 {
 
-                    var user = UserDao.Instance.GetById(UserID.Value);
+                    var user = UserProfileDao.Instance.GetById(UserID.Value);
 
                     if (user != null)
                     {
@@ -203,7 +203,7 @@ namespace Project_Ngo.Areas.User.Controllers
             if (ModelState.IsValid)
             {
                 model.UserID = UserID.Value;
-                var result = UserDao.Instance.Update(model, image);
+                var result = UserProfileDao.Instance.Update(model, image);
                 if (result == 1)
                 {
                     return View("UpdateSuccessPopup");
@@ -229,7 +229,7 @@ namespace Project_Ngo.Areas.User.Controllers
 
         public ActionResult AddDonation(Donations model)
         {
-            DonationDao.Instance.AddDonation(model);
+            DonationDAO.Instance.AddDonation(model);
             
             return View("DonationSuccess");
         }

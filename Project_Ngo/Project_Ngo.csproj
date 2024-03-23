@@ -122,15 +122,22 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
-    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
-    <Compile Include="Areas\User\Controllers\UserController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CampaignsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonationsManagerController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UsersManagerController.cs" />
+    <Compile Include="Areas\User\Controllers\CampaignsController.cs" />
+    <Compile Include="Areas\User\Controllers\DonationsController.cs" />
+    <Compile Include="Areas\User\Controllers\HomeController.cs" />
+    <Compile Include="Areas\User\Controllers\ProfileController.cs" />
     <Compile Include="Areas\User\UserAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Dao\DonationDao.cs" />
-    <Compile Include="Models\Dao\UserDao.cs" />
+    <Compile Include="Models\Dao\AdminUserDAO.cs" />
+    <Compile Include="Models\Dao\DonationDAO.cs" />
+    <Compile Include="Models\Dao\UserProfileDao.cs" />
     <Compile Include="Models\Entities\Campaigns.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1125,7 +1132,7 @@
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.ttf" />
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.woff" />
     <Content Include="Content\Admin\assets\vendors\mdi\fonts\materialdesignicons-webfont.woff2" />
-    <Compile Include="Models\Dao\CampaignsDao.cs" />
+    <Compile Include="Models\Dao\CampaignDAO.cs" />
     <EntityDeploy Include="Models\Entities\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1134,31 +1141,31 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\User\Views\web.config" />
-    <Content Include="Areas\User\Views\User\Index.cshtml" />
-    <Content Include="Areas\User\Views\User\About.cshtml" />
-    <Content Include="Areas\User\Views\User\Partners.cshtml" />
-    <Content Include="Areas\User\Views\User\HelpCentre.cshtml" />
-    <Content Include="Areas\User\Views\User\Contact.cshtml" />
-    <Content Include="Areas\User\Views\User\Register.cshtml" />
-    <Content Include="Areas\User\Views\User\Login.cshtml" />
-    <Content Include="Areas\User\Views\User\Welcome.cshtml" />
-    <Content Include="Areas\User\Views\User\Account.cshtml" />
-    <Content Include="Areas\User\Views\User\UpdateSuccessPopup.cshtml" />
-    <Content Include="Areas\User\Views\User\Error.cshtml" />
-    <Content Include="Areas\User\Views\User\Donate.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Index.cshtml" />
+    <Content Include="Areas\User\Views\Profile\About.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Partners.cshtml" />
+    <Content Include="Areas\User\Views\Profile\HelpCentre.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Contact.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Register.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Login.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Welcome.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Account.cshtml" />
+    <Content Include="Areas\User\Views\Profile\UpdateSuccessPopup.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Error.cshtml" />
+    <Content Include="Areas\User\Views\Profile\Donate.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Login.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Table.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Users.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Donations.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\Campaigns.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\CampaignDetails.cshtml" />
-    <Content Include="Areas\Admin\Views\Admin\DonationDetails.cshtml" />
-    <Content Include="Areas\User\Views\User\ShowCampaigns.cshtml" />
-    <Content Include="Areas\User\Views\User\ShowCampaignDetails.cshtml" />
-    <Content Include="Areas\User\Views\User\DonationSuccess.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Login.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\Table.cshtml" />
+    <Content Include="Areas\Admin\Views\UsersManager\Users.cshtml" />
+    <Content Include="Areas\Admin\Views\DonationsManager\Donations.cshtml" />
+    <Content Include="Areas\Admin\Views\CampaignsManager\Campaigns.cshtml" />
+    <Content Include="Areas\Admin\Views\CampaignsManager\CampaignDetails.cshtml" />
+    <Content Include="Areas\Admin\Views\DonationsManager\DonationDetails.cshtml" />
+    <Content Include="Areas\User\Views\Profile\ShowCampaigns.cshtml" />
+    <Content Include="Areas\User\Views\Profile\ShowCampaignDetails.cshtml" />
+    <Content Include="Areas\User\Views\Profile\DonationSuccess.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -1189,8 +1196,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\User\Data\" />
+    <Folder Include="Areas\User\Views\Campaigns\" />
+    <Folder Include="Areas\User\Views\Donations\" />
+    <Folder Include="Areas\User\Views\Home\" />
     <Folder Include="Content\Upload\" />
   </ItemGroup>
   <ItemGroup>
