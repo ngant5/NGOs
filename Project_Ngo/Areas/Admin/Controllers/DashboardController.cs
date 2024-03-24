@@ -28,19 +28,23 @@ namespace Project_Ngo.Areas.Admin.Controllers
                 }
                 else
                 {
-                    // Nếu typeUser là false, chuyển hướng đến trang đăng nhập
-                    return RedirectToAction("Login", "User");
+                    // Nếu typeUser là false, hiện popup báo lỗi sai mập khẩu hoặc tên đăng nhập, cho quay về trang login lại
+                    TempData["ErrorMessage"] = "Invalid username or password.";
+                    return RedirectToAction("Login", "Dashboard");
                 }
             }
             else
             {
-                // Nếu không có Session["typeUser"], chuyển hướng đến trang đăng nhập
-                return RedirectToAction("Login", "User");
+                // Nếu không có Session["typeUser"], hiện popup thông báo không đúng thông tin tài khoản, chuyển hướng đến trang đăng nhập trong area admin
+                TempData["ErrorMessage"] = "Please log in to access the admin area.";
+                return RedirectToAction("Login", "Dashboard");
             }
         }
+
         public ActionResult Login()
         {
             return View();
+
         }
 
         [HttpPost]
@@ -70,13 +74,13 @@ namespace Project_Ngo.Areas.Admin.Controllers
                                 Session["typeUser"] = user.typeUser;
                                 Debug.WriteLine("Login successful as admin.");
 
-                                return RedirectToAction("Index", "Admin");
+                                return RedirectToAction("Index", "Dashboard");
                             }
                             else
                             {
                                 ViewBag.Error = "Invalid username or password.";
 
-                                return RedirectToAction("Login", "Admin");
+                                return RedirectToAction("Login", "Dashboard");
 
 
                             }
@@ -84,14 +88,14 @@ namespace Project_Ngo.Areas.Admin.Controllers
                         else
                         {
                             ViewBag.Error = "You are not authorized to access the admin panel.";
-                            return RedirectToAction("Login", "User", new { area = "User" });
+                            return RedirectToAction("Login", "Home", new { area = "User" });
 
                         }
                     }
                     else
                     {
                         ViewBag.Error = "Invalid username or password.";
-                        return RedirectToAction("Register", "User", new { area = "User" });
+                        return RedirectToAction("Register", "Home", new { area = "User" });
 
                     }
                 }

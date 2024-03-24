@@ -1141,18 +1141,18 @@
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\User\Views\web.config" />
-    <Content Include="Areas\User\Views\Profile\Index.cshtml" />
-    <Content Include="Areas\User\Views\Profile\About.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Partners.cshtml" />
+    <Content Include="Areas\User\Views\Home\Index.cshtml" />
+    <Content Include="Areas\User\Views\Home\About.cshtml" />
+    <Content Include="Areas\User\Views\Home\Partners.cshtml" />
     <Content Include="Areas\User\Views\Profile\HelpCentre.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Contact.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Register.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Login.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Welcome.cshtml" />
+    <Content Include="Areas\User\Views\Home\Contact.cshtml" />
+    <Content Include="Areas\User\Views\Home\Register.cshtml" />
+    <Content Include="Areas\User\Views\Home\Login.cshtml" />
+    <Content Include="Areas\User\Views\Home\Welcome.cshtml" />
     <Content Include="Areas\User\Views\Profile\Account.cshtml" />
     <Content Include="Areas\User\Views\Profile\UpdateSuccessPopup.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Error.cshtml" />
-    <Content Include="Areas\User\Views\Profile\Donate.cshtml" />
+    <Content Include="Areas\User\Views\Home\Error.cshtml" />
+    <Content Include="Areas\User\Views\Donations\Donate.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
@@ -1163,9 +1163,9 @@
     <Content Include="Areas\Admin\Views\CampaignsManager\Campaigns.cshtml" />
     <Content Include="Areas\Admin\Views\CampaignsManager\CampaignDetails.cshtml" />
     <Content Include="Areas\Admin\Views\DonationsManager\DonationDetails.cshtml" />
-    <Content Include="Areas\User\Views\Profile\ShowCampaigns.cshtml" />
-    <Content Include="Areas\User\Views\Profile\ShowCampaignDetails.cshtml" />
-    <Content Include="Areas\User\Views\Profile\DonationSuccess.cshtml" />
+    <Content Include="Areas\User\Views\Campaigns\ShowCampaigns.cshtml" />
+    <Content Include="Areas\User\Views\Campaigns\ShowCampaignDetails.cshtml" />
+    <Content Include="Areas\User\Views\Donations\DonationSuccess.cshtml" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -1196,9 +1196,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\User\Views\Campaigns\" />
-    <Folder Include="Areas\User\Views\Donations\" />
-    <Folder Include="Areas\User\Views\Home\" />
     <Folder Include="Content\Upload\" />
   </ItemGroup>
   <ItemGroup>
